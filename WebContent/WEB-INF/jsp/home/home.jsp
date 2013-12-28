@@ -84,7 +84,7 @@
 	   <!-- Main Blog Content -->
 	   <div class="large-9 columns" role="content">
 	 	<c:choose>
-	 		<c:when test="${empty classifiersList}">
+	 		<c:when test="${selectedEnum == null}">
 		 		<article>
 			       <h3><a href="#">Orçamento em RDF</a></h3>
 			       <br></br>
@@ -148,6 +148,11 @@
 					       </c:forEach>
 			      		</tbody>
 		       		</table>
+		       		<c:forEach items="${errors}" var="error">
+		       			<div class="alert-box warning round">
+		       				${error.message}
+		       			</div>
+		       		</c:forEach>
 			     </article>
 	 		</c:otherwise>
 	 	</c:choose>

@@ -9,6 +9,7 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
+import br.com.caelum.vraptor.validator.ValidationMessage;
 import br.unb.loa.data.LoaDAO;
 import br.unb.loa.data.SimpleDAO;
 import br.unb.loa.model.Classifier;
@@ -23,6 +24,8 @@ public class HomeController {
 	
 	private static final int LOA_START = 2000;
 	private static final int LOA_END = 2013;
+	
+	private static final String ERROR_MESSAGE_OFFLINE = "Serviço indisponível, tente mais tarde";
 	
 	public HomeController(Result result, Validator validator){
 		this.result = result;
@@ -42,23 +45,25 @@ public class HomeController {
 	@Path("/searchClassifier")
 	public void searchClassifier(ClassifierType enumType, int year){
 		
-		System.out.println(enumType);
-		System.out.println(year);
-		
 		List<Classifier> classifiersList;
 		List<Integer> loaYears;
-		
-		classifiersList = classifierDAO.searchByType(enumType, year);
 		
 		loaYears = new ArrayList<Integer>();
 		
 		for(int i=LOA_START; i<=LOA_END; i++)
 			loaYears.add(new Integer(i));
-			
+
+		classifiersList = classifierDAO.searchByType(enumType, year);
+		
 		result.include("classifiersList", classifiersList);
 		result.include("loaYears", loaYears);
 		result.include("selectedEnum", enumType);
 		result.include("selectedYear", year);
+		
+		if(classifiersList == null){
+			validator.add(new ValidationMessage(ERROR_MESSAGE_OFFLINE, "errorOffline"));
+			validator.onErrorRedirectTo(HomeController.class).home();
+		}
 		
 		result.redirectTo(HomeController.class).home();
 	}
