@@ -21,12 +21,12 @@ public enum ClassifierType {
 	
 	private final String name;
 	private final String property;
-	private final String sparqlName;
+	private final String id;
 	
-	private ClassifierType(final String name, final String property, final String sparqlName){
+	private ClassifierType(final String name, final String property, final String id){
 		this.name = name;
 		this.property = property;
-		this.sparqlName = sparqlName;
+		this.id = id;
 	}
 	
 	public String getName(){
@@ -37,8 +37,8 @@ public enum ClassifierType {
 		return property;
 	}
 	
-	public String getSparqlName(){
-		return sparqlName;
+	public String getId(){
+		return id;
 	}
 	
 	@Override

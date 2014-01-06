@@ -1,0 +1,23 @@
+
+ul.side-nav  {
+	padding-top: 0;
+}
+
+html,body {
+	height: 100%;
+}
+
+div#container {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -6em;
+}
+
+footer, #push {
+	height: 4em;
+}
+
+.row {
+     width: 100%;
+}

@@ -6,7 +6,7 @@ import com.hp.hpl.jena.query.ResultSet;
 
 public class EndpointSPARQL {
 
-	private static final String ENDPOINT_URL = "http://orcamento.dados.gov.br/sparql/";
+	private static final String ENDPOINT_URL = "http://10.209.65.201:8890/sparql";
 	
 	public EndpointSPARQL(){ }
 	
@@ -15,10 +15,12 @@ public class EndpointSPARQL {
 		QueryExecution queryExecution;
 		ResultSet result;
 		
-		try{
+		System.out.println(query);
+		
+		try {
 			queryExecution = QueryExecutionFactory.sparqlService(ENDPOINT_URL, query);
 			result = queryExecution.execSelect();
-		}catch(Exception e){
+		} catch(Exception e){
 			e.printStackTrace();
 			result = null;
 		}

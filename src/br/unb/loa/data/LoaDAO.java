@@ -59,18 +59,18 @@ public class LoaDAO implements SimpleDAO<Classifier, ClassifierType>{
                 "  ?i loa:valorPago ?val6 ." +
                 "} GROUP BY ORDER BY";
             
-        classifierCode = CODE_SPARQL + type.getSparqlName();
-        query = query.replace("SELECT", "SELECT ?"+classifierCode+" ?"+type.getSparqlName()+"");
+        classifierCode = CODE_SPARQL + type.getId();
+        query = query.replace("SELECT", "SELECT ?"+classifierCode+" ?"+type.getId()+"");
         
-        query = query.replace("GROUP BY", "GROUP BY ?"+classifierCode+" ?"+type.getSparqlName()+"");                
-        query = query.replace("ORDER BY", "ORDER BY ?"+classifierCode+" ?"+type.getSparqlName()+"");  
+        query = query.replace("GROUP BY", "GROUP BY ?"+classifierCode+" ?"+type.getId()+"");                
+        query = query.replace("ORDER BY", "ORDER BY ?"+classifierCode+" ?"+type.getId()+"");  
         
         switch (type) {
 	        case ORGAO:
-	            query = query.replace("Pago ?val6 .", "Pago ?val6 . ?i loa:"+ClassifierType.UO.getProperty()+" [loa:"+type.getProperty()+" [rdf:label ?"+type.getSparqlName()+" ; loa:codigo ?"+classifierCode+"]] .");      
+	            query = query.replace("Pago ?val6 .", "Pago ?val6 . ?i loa:"+ClassifierType.UO.getProperty()+" [loa:"+type.getProperty()+" [rdf:label ?"+type.getId()+" ; loa:codigo ?"+classifierCode+"]] .");      
 	            break;
             default:
-                query = query.replace("Pago ?val6 .", "Pago ?val6 . ?i loa:"+type.getProperty()+" [rdf:label ?"+type.getSparqlName()+" ; loa:codigo ?"+classifierCode+"] .");         
+                query = query.replace("Pago ?val6 .", "Pago ?val6 . ?i loa:"+type.getProperty()+" [rdf:label ?"+type.getId()+" ; loa:codigo ?"+classifierCode+"] .");         
                 break;
         }
 		
@@ -92,8 +92,8 @@ public class LoaDAO implements SimpleDAO<Classifier, ClassifierType>{
 			
 			qsol = result.nextSolution() ;
 			
-			codeNode = qsol.get(CODE_SPARQL + type.getSparqlName());
-			labelNode = qsol.get(type.getSparqlName());
+			codeNode = qsol.get(CODE_SPARQL + type.getId());
+			labelNode = qsol.get(type.getId());
 			ploaNode = qsol.get(PLOA_SPARQL);
 			loaNode = qsol.get(LOA_SPARQL);
 			leiMaisCreditoNode = qsol.get(LEI_MAIS_CREDITO_SPARQL);

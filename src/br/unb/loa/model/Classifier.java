@@ -57,48 +57,48 @@ public class Classifier{
 		this.year = year;
 	}
 
-	public String getValueProjetoLei() {
-		return FormatterUtil.convertDouble(valueProjetoLei);
+	public double getValueProjetoLei() {
+		return valueProjetoLei;
 	}
 
 	public void setValueProjetoLei(double valueProjetoLei) {
 		this.valueProjetoLei = valueProjetoLei;
 	}
 
-	public String getValueDotacaoInicial() {
-		return FormatterUtil.convertDouble(valueDotacaoInicial);
+	public double getValueDotacaoInicial() {
+		return valueDotacaoInicial;
 	}
 
 	public void setValueDotacaoInicial(double valueDotacaoInicial) {
 		this.valueDotacaoInicial = valueDotacaoInicial;
 	}
 
-	public String getValueLeiMaisCredito() {
-		return FormatterUtil.convertDouble(valueLeiMaisCredito);
+	public double getValueLeiMaisCredito() {
+		return valueLeiMaisCredito;
 	}
 
 	public void setValueLeiMaisCredito(double valueLeiMaisCredito) {
 		this.valueLeiMaisCredito = valueLeiMaisCredito;
 	}
 
-	public String getValueLiquidado() {
-		return FormatterUtil.convertDouble(valueLiquidado);
+	public double getValueLiquidado() {
+		return valueLiquidado;
 	}
 
 	public void setValueLiquidado(double valueLiquidado) {
 		this.valueLiquidado = valueLiquidado;
 	}
 
-	public String getValueEmpenhado() {
-		return FormatterUtil.convertDouble(valueEmpenhado);
+	public double getValueEmpenhado() {
+		return valueEmpenhado;
 	}
 
 	public void setValueEmpenhado(double valueEmpenhado) {
 		this.valueEmpenhado = valueEmpenhado;
 	}
 
-	public String getValuePago() {
-		return FormatterUtil.convertDouble(valuePago);
+	public double getValuePago() {
+		return valuePago;
 	}
 
 	public void setValuePago(double valuePago) {
