@@ -15,8 +15,6 @@ public class EndpointSPARQL {
 		QueryExecution queryExecution;
 		ResultSet result;
 		
-		System.out.println(query);
-		
 		try {
 			queryExecution = QueryExecutionFactory.sparqlService(ENDPOINT_URL, query);
 			result = queryExecution.execSelect();
