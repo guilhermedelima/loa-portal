@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
-import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
@@ -28,6 +26,9 @@ public class ClassifierController {
 	private static final int LOA_START = 2000;
 	private static final int LOA_END = 2013;
 	
+	private static final String ENUMID_DEFAULT = "programa";
+	private static final int YEAR_DEFAULT = 2013;
+	
 	private static final String ERROR_MESSAGE_OFFLINE = "Serviço indisponível, tente mais tarde";
 	
 	public ClassifierController(Result result, Validator validator){
@@ -38,24 +39,23 @@ public class ClassifierController {
 	
 	@Path("/")
 	public void index(){
-		List<ClassifierType> enumList;
 		
-		enumList = Arrays.asList(ClassifierType.values());
-		result.include("enumList", enumList);
+		result.redirectTo(ClassifierController.class).classifier(ENUMID_DEFAULT, YEAR_DEFAULT);
 	}
 	
 	@Path("/classificador/{enumId}/{year:[0-9]{4}}")
 	public void classifier(String enumId, int year){
-		ClassifierType enumType = ClassifierUtil.getClassifierTypeById(enumId);
+		ClassifierType enumType;
+		List<Classifier> classifiersList;
+		List<Integer> loaYears;
+		
+		enumType = ClassifierUtil.getClassifierTypeById(enumId);
 		
 		if (enumType == null) {
 			result.use(Results.http()).setStatusCode(404);
 			result.use(Results.http()).sendError(404);
 			return;
 		}
-		
-		List<Classifier> classifiersList;
-		List<Integer> loaYears;
 		
 		loaYears = new ArrayList<Integer>();
 		

@@ -1,6 +1,5 @@
 package br.unb.loa.model;
 
-import br.unb.loa.util.FormatterUtil;
 
 public class Classifier{
 	

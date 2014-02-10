@@ -21,3 +21,39 @@ footer, #push {
 .row {
      width: 100%;
 }
+
+#barra-brasil {
+    min-width: 928px;
+    overflow: hidden;
+    position: relative;
+}
+#barra-brasil .barra {
+    display: block;
+    height: 28px;
+    margin: 0 auto;
+    width: 928px;
+}
+#barra-brasil .barra ul {
+    float: right;
+    list-style: none outside none;
+    margin: 0 auto;
+    width: 319px;
+}
+#barra-brasil .barra ul li {
+    float: left;
+    padding-left: 25px;
+}
+#barra-brasil .ai {
+    background: url("../img/ai.png") no-repeat scroll 0 4px #00500F;
+    display: block;
+    height: 28px;
+    text-indent: -10000px;
+    width: 161px;
+}
+#barra-brasil .brasilgov {
+    background: url("../img/brasil_novo.png") no-repeat scroll 0 4px #00500F;
+    display: block;
+    height: 28px;
+    text-indent: -10000px;
+    width: 108px;
+}

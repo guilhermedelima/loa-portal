@@ -18,21 +18,19 @@
 <body>
 	<div id="container">
 		<!-- Nav Bar -->
-		<div class="row">
-			<div class="large-12 columns">
-				<div class="nav-bar right">
-					<ul class="button-group">
-						<li><a href="<c:url value="/" />" class="button">Início</a></li>
-						<li><a href="http://www.orcamentofederal.gov.br/"
-							class="button">Secretaria de Orçamento Federal</a></li>
-						<li><a href="http://orcamento.dados.gov.br/sparql/"
-							class="button">Endpoint - Orçamento Federal</a></li>
+	    <div id="header" style="background-color:#00500F">
+			<div id="barra-brasil">
+				<div class="barra">
+					<ul>
+						<li><a title="Acesso Ã  informação" class="ai"
+							href="http://www.acessoainformacao.gov.br">www.sic.gov.br</a></li>
+						<li><a title="Portal de Estado do Brasil" class="brasilgov"
+							href="http://www.brasil.gov.br">www.brasil.gov.br</a></li>
 					</ul>
 				</div>
-				<h1>Portal LOA <img src="<c:url value="/img/moeda.png" />" /></h1>
-				<hr />
-			</div> 
+			</div>
 		</div>
+		</br></br>
 		<!-- End Nav --> 
 
 		<!-- Main Page Content and Sidebar -->
@@ -67,7 +65,7 @@
 				<h3>
 					<a href="#">Página não encontrada - Erro 404</a>
 				</h3>
-				<a href="#" class="button" onclick="history.go(-1);">Voltar</a>
+				<a href="#" class="button" onclick="history.go(-1); return false;">Voltar</a>
 				</article>
 				<hr />
 			</div>
@@ -79,21 +77,14 @@
 
 	<!-- Footer -->
 	<footer class="row">
-	<div class="large-12 columns">
-		<hr />
-		<div class="row">
-			<div class="large-6 columns">
-				<p>© Copyright.</p>
-			</div>
-			<div class="large-6 columns">
-				<ul class="inline-list right">
-					<li><a href="<c:url value="/" />">Início</a></li>
-					<li><a href="http://www.orcamentofederal.gov.br/">Secretaria de Orçamento Federal</a></li>
-					<li><a href="http://orcamento.dados.gov.br/sparql/">Endpoint</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
+	  <div class="large-12 columns">
+	    <hr />
+	    <div class="row">
+	      <div class="large-6 columns">
+	        <p>© Copyright.</p>
+	      </div>
+	    </div>
+	  </div>
 	</footer>
 
 </body>
