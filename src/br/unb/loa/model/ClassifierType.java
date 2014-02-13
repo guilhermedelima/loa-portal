@@ -43,6 +43,6 @@ public enum ClassifierType {
 	
 	@Override
 	public String toString(){
-		return name;
+		return id;
 	}
 }

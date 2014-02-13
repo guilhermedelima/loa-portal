@@ -41,7 +41,7 @@
 			<ul class="side-nav">
 				<c:forEach items="${enumList}" var="classifierEnum">
 					<li class="menu-lateral-classificadores">
-						<a href="<c:url value="/classificadores/${classifierEnum.id}/2013" />${classifierEnum.name}</a>
+						<a href="<c:url value="/classificadores/${classifierEnum.id}/2013" />" >${classifierEnum.name}</a>
 					</li>
 					<li class="divider"></li>
 				</c:forEach>
