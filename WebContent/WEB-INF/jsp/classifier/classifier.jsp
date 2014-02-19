@@ -62,34 +62,26 @@
 
 		<!-- Sidebar -->
 		<aside class="large-2 columns">
-		<h5>Classificadores</h5>
-		<ul class="side-nav">
-			<c:forEach items="${enumList}" var="classifierEnum">
-				<li class="menu-lateral-classificadores">
-					<a href="<c:url value="/classificador/${classifierEnum.id}/2013" />" />${classifierEnum.name}</a>
-				</li>
-				<li class="divider"></li>
-			</c:forEach>
-		</ul>
-		<div class="panel">
-			<h5>Orçamento Federal</h5>
-			<p>O orçamento da União pode ser representado como uma lista de
-				itens de despesa. A cada item desta lista estão associados valores
-				financeiros que correspondem aos diversos estágios da execução
-				orçamentária.</p>
-			<a href="http://www.orcamentofederal.gov.br/informacoes-orcamentarias/manual-tecnico/MTO_2014.pdf">Leia Mais →</a>
-		</div>
+			<h5>Classificações Orçamentárias</h5>
+			<br />
+			<ul class="side-nav">
+				<c:forEach items="${enumList}" var="classifierEnum">
+					<li class="menu-lateral-classificadores">
+						<a href="<c:url value="/classificador/${classifierEnum.id}/2013" />" />${classifierEnum.name}</a>
+					</li>
+					<li class="divider"></li>
+				</c:forEach>
+			</ul>
 		</aside>
 		<!-- End Sidebar -->
 
 		<!-- Main Blog Content -->
 		<div class="large-10 columns" role="content">
 			<article>
-			<h2>Classificador <strong>"${selectedEnum.name}"</strong></h2>
+			<h2><strong>${selectedEnum.name}</strong></h2>
 			
 			<hr/>
 			
-			<h4 class="subheader ">Dados orçamentários - ${selectedEnum.name} (${selectedYear}):</h4>
 			<h6 class="subheader"><em><strong>Selecione um exercício</strong></em></h6>
 			<dl class="sub-nav">
 				<c:forEach items="${loaYears}" var="year">
@@ -110,43 +102,21 @@
 					<tr>
 						<th><small>Código</small></th>
 						<th><small>Título</small></th>
-						<th><small>Valor Projeto Lei</small></th>
 						<th><small>Valor Dotação Inicial</small></th>
-						<th><small>Lei Mais Crédito</small></th>
-						<th><small>Empenhado</small></th>
-						<th><small>Liquidado</small></th>
-						<th><small>Pago</small></th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach items="${classifiersList}" var="classifier">
 						<tr>
-							<td align="center"><small>${classifier.code}</small></td>
-							<td align="left">${classifier.label}
-							</th>
-							<td align="right"><small><fmt:formatNumber
-										value="${classifier.valueProjetoLei}" currencySymbol=""
-										type="currency" /></small></td>
+							<td align="left"><small>${classifier.code}</small></td>
+							<td align="left">${classifier.label}</td>
 							<td align="right"><small><fmt:formatNumber
 										value="${classifier.valueDotacaoInicial}" currencySymbol=""
-										type="currency" /></small></td>
-							<td align="right"><small><fmt:formatNumber
-										value="${classifier.valueLeiMaisCredito}" currencySymbol=""
-										type="currency" /></small></td>
-							<td align="right"><small><fmt:formatNumber
-										value="${classifier.valueEmpenhado}" currencySymbol=""
-										type="currency" /></small></td>
-							<td align="right"><small><fmt:formatNumber
-										value="${classifier.valueLiquidado}" currencySymbol=""
-										type="currency" /></small></td>
-							<td align="right"><small><fmt:formatNumber
-										value="${classifier.valuePago}" currencySymbol=""
 										type="currency" /></small></td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
-			<hr /> 
 		</article>
 			
 		</div>

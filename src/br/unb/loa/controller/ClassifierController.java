@@ -51,6 +51,7 @@ public class ClassifierController {
 		enumType = ClassifierUtil.getClassifierTypeById(enumID);
 		
 		if (enumType == null) {
+			result.include("errorCode", 404);
 			result.use(Results.http()).setStatusCode(404);
 			result.use(Results.http()).sendError(404);
 			return;
@@ -59,6 +60,7 @@ public class ClassifierController {
 		classifiersList = classifierDAO.searchByType(enumType, year);
 		
 		if(classifiersList == null){
+			result.include("errorCode", 500);
 			result.include("errorMessage", ERROR_MESSAGE_OFFLINE);
 			result.use(Results.http()).setStatusCode(500);
 			result.use(Results.http()).sendError(500);

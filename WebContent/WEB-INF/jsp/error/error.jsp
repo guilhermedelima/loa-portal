@@ -60,12 +60,27 @@
 
 			<!-- Main Blog Content -->
 			<div class="large-10 columns" role="content">
-
 				<article>
-				<h3>
-					<a href="#">Página não encontrada - Erro 404</a>
-				</h3>
-				<a href="#" class="button" onclick="history.go(-1); return false;">Voltar</a>
+				
+					<c:choose>
+						<c:when test="${errorCode eq 500}">
+							<h3>
+								<a href="#">Erro Interno do Servidor - Erro 500</a>
+							</h3>
+							<c:if test="${not empty errorMessage}">
+								<div class="alert-box warning round">
+				       				${errorMessage}
+				       			</div>
+				       		</c:if>
+						</c:when>
+						<c:otherwise>
+							<h3>
+								<a href="#">Página não encontrada - Erro 404</a>
+							</h3>
+						</c:otherwise>
+					</c:choose>
+
+					<a href="#" class="button" onclick="history.go(-1); return false;">Voltar</a>
 				</article>
 				<hr />
 			</div>
