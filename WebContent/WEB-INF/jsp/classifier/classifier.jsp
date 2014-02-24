@@ -101,18 +101,38 @@
 				<thead>
 					<tr>
 						<th><small>Código</small></th>
-						<th><small>Título</small></th>
-						<th><small>Valor Dotação Inicial</small></th>
+  						<th><small>Título</small></th>
+ 						<th><small>Valor Projeto Lei</small></th>
+  						<th><small>Valor Dotação Inicial</small></th>
+ 						<th><small>Lei Mais Crédito</small></th>
+ 						<th><small>Empenhado</small></th>
+ 						<th><small>Liquidado</small></th>
+ 						<th><small>Pago</small></th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach items="${classifiersList}" var="classifier">
 						<tr>
-							<td align="left"><small>${classifier.code}</small></td>
+							<td align="center"><small>${classifier.code}</small></td>
 							<td align="left">${classifier.label}</td>
+ 							<td align="right"><small><fmt:formatNumber
+ 										value="${classifier.valueProjetoLei}" currencySymbol=""
+ 										type="currency" /></small></td>
 							<td align="right"><small><fmt:formatNumber
 										value="${classifier.valueDotacaoInicial}" currencySymbol=""
 										type="currency" /></small></td>
+							<td align="right"><small><fmt:formatNumber
+ 										value="${classifier.valueLeiMaisCredito}" currencySymbol=""
+ 										type="currency" /></small></td>
+ 							<td align="right"><small><fmt:formatNumber
+ 										value="${classifier.valueEmpenhado}" currencySymbol=""
+ 										type="currency" /></small></td>
+ 							<td align="right"><small><fmt:formatNumber
+ 										value="${classifier.valueLiquidado}" currencySymbol=""
+ 										type="currency" /></small></td>
+ 							<td align="right"><small><fmt:formatNumber
+ 										value="${classifier.valuePago}" currencySymbol=""
+ 										type="currency" /></small></td>
 						</tr>
 					</c:forEach>
 				</tbody>
