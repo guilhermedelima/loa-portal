@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.unb.loa.model.Classifier;
 import br.unb.loa.model.ClassifierType;
+import br.unb.loa.model.Item;
 import br.unb.loa.service.EndpointSPARQL;
 
 import com.hp.hpl.jena.query.QuerySolution;
@@ -12,7 +13,7 @@ import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.Literal;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 
-public class LoaDAO implements SimpleDAO<Classifier, ClassifierType>{
+public class ItemDAO implements SimpleDAO<Item, ClassifierType>{
 
 	private EndpointSPARQL endpoint;
 	
@@ -24,26 +25,40 @@ public class LoaDAO implements SimpleDAO<Classifier, ClassifierType>{
 	private static String LIQUIDADO_SPARQL = "liquidado";
 	private static String PAGO_SPARQL = "pago";
 	
-	public LoaDAO(){
+	public ItemDAO(){
 		this.endpoint = new EndpointSPARQL();
 	}
 	
-	public List<Classifier> searchByType(ClassifierType type, int year) {
+	public List<Item> searchByType(ClassifierType type, int year) {
 
-		ResultSet result;
-		String query;
-		List<Classifier> classifiers;
+		List<Item> items;
+		List<ClassifierType> wrapperTypeList;
 		
-		query = buildQuery(type, year);
-		result = endpoint.execSPARQLQuery(query);
+		wrapperTypeList = new ArrayList<ClassifierType>();
+		wrapperTypeList.add(type);
 		
-		classifiers = (result != null ) ? convertResultQuery(result, type, year) : null;
+		items = searchByTypeList(wrapperTypeList, year);
 		
-		return classifiers;
+		return items;
 	}
 	
-	private String buildQuery(ClassifierType type, int year){
+	public List<Item> searchByTypeList(List<ClassifierType> typeList, int year) {
+		
+		ResultSet result;
+		String query;
+		List<Item> items;
+		
+		query = buildQuery(typeList, year);
+		result = endpoint.execSPARQLQuery(query);
+		
+		items = (result != null ) ? convertResultQuery(result, typeList, year) : null;
+		
+		return items;
+	}
+	
+	private String buildQuery(List<ClassifierType> typeList, int year){
         
+		ClassifierType type;
 		String query, classifierCode;
 		
         query = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>" +
@@ -59,41 +74,56 @@ public class LoaDAO implements SimpleDAO<Classifier, ClassifierType>{
                 "  ?i loa:valorPago ?val6 ." +
                 "} GROUP BY ORDER BY";
             
-        classifierCode = CODE_SPARQL + type.getId();
-        query = query.replace("SELECT", "SELECT ?"+classifierCode+" ?"+type.getId()+"");
-        
-        query = query.replace("GROUP BY", "GROUP BY ?"+classifierCode+" ?"+type.getId()+"");                
-        query = query.replace("ORDER BY", "ORDER BY ?"+classifierCode+" ?"+type.getId()+"");  
-        
-        switch (type) {
-	        case ORGAO:
-	            query = query.replace("Pago ?val6 .", "Pago ?val6 . ?i loa:"+ClassifierType.UO.getProperty()+" [loa:"+type.getProperty()+" [rdf:label ?"+type.getId()+" ; loa:codigo ?"+classifierCode+"]] .");      
-	            break;
-            default:
-                query = query.replace("Pago ?val6 .", "Pago ?val6 . ?i loa:"+type.getProperty()+" [rdf:label ?"+type.getId()+" ; loa:codigo ?"+classifierCode+"] .");         
-                break;
+        int i;
+        for(i=typeList.size()-1; i>=0; i--){
+        	type = typeList.get(i);
+        	
+        	classifierCode = CODE_SPARQL + type.getId();
+            query = query.replace("SELECT", "SELECT ?"+classifierCode+" ?"+type.getId()+"");
+            
+            query = query.replace("GROUP BY", "GROUP BY ?"+classifierCode+" ?"+type.getId()+"");                
+            query = query.replace("ORDER BY", "ORDER BY ?"+classifierCode+" ?"+type.getId()+"");
+        	
+            switch (type) {
+	            case ORGAO:
+	            	query = query.replace("Pago ?val6 .", "Pago ?val6 . ?i loa:"+ClassifierType.UO.getProperty()+" [loa:"+type.getProperty()+" [rdf:label ?"+type.getId()+" ; loa:codigo ?"+classifierCode+"]] .");      
+	            	break;
+	            default:
+	            	query = query.replace("Pago ?val6 .", "Pago ?val6 . ?i loa:"+type.getProperty()+" [rdf:label ?"+type.getId()+" ; loa:codigo ?"+classifierCode+"] .");         
+	            	break;
+            }	
         }
 		
 		return query;
 	}
-	
-	private List<Classifier> convertResultQuery(ResultSet result, ClassifierType type, int year){
-	
-		List<Classifier> classifiers;
 		
-		classifiers = new ArrayList<Classifier>();
+	private List<Item> convertResultQuery(ResultSet result, List<ClassifierType> typeList, int year){
+	
+		List<Item> items;
+		
+		items = new ArrayList<Item>();
 		
 		while(result.hasNext()){
 		
 			QuerySolution qsol;
 			RDFNode labelNode, codeNode, ploaNode, loaNode, leiMaisCreditoNode, empenhadoNode, liquidadoNode, pagoNode;
+			List<Classifier> classifiers;
 			String label, code;
 			double ploa, loa, leiMaisCredito, empenhado, liquidado, pago;
 			
 			qsol = result.nextSolution() ;
+			classifiers = new ArrayList<Classifier>();
 			
-			codeNode = qsol.get(CODE_SPARQL + type.getId());
-			labelNode = qsol.get(type.getId());
+			for(ClassifierType type : typeList){
+				codeNode = qsol.get(CODE_SPARQL + type.getId());
+				labelNode = qsol.get(type.getId());
+				
+				code = ((Literal)codeNode).getLexicalForm();
+				label = ((Literal)labelNode).getLexicalForm();
+				
+				classifiers.add(new Classifier(label, code, year, type) );
+			}
+			
 			ploaNode = qsol.get(PLOA_SPARQL);
 			loaNode = qsol.get(LOA_SPARQL);
 			leiMaisCreditoNode = qsol.get(LEI_MAIS_CREDITO_SPARQL);
@@ -101,8 +131,6 @@ public class LoaDAO implements SimpleDAO<Classifier, ClassifierType>{
 			liquidadoNode = qsol.get(LIQUIDADO_SPARQL);
 			pagoNode = qsol.get(PAGO_SPARQL);
 			
-			code = ((Literal)codeNode).getLexicalForm();
-			label = ((Literal)labelNode).getLexicalForm();
 			ploa = Double.parseDouble(((Literal)ploaNode).getLexicalForm());
 			loa = Double.parseDouble(((Literal)loaNode).getLexicalForm());
 			leiMaisCredito = Double.parseDouble(((Literal)leiMaisCreditoNode).getLexicalForm());
@@ -110,9 +138,10 @@ public class LoaDAO implements SimpleDAO<Classifier, ClassifierType>{
 			liquidado = Double.parseDouble(((Literal)liquidadoNode).getLexicalForm());
 			pago = Double.parseDouble(((Literal)pagoNode).getLexicalForm());
          
-			classifiers.add(new Classifier(label, code, year, ploa, loa, leiMaisCredito, liquidado, empenhado, pago, type));
+			items.add(new Item(classifiers, year, ploa, loa, leiMaisCredito, liquidado, empenhado, pago));
 		}
 		
-		return classifiers;
+		return items;
 	}
+
 }

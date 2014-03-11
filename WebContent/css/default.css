@@ -57,3 +57,14 @@ footer, #push {
     text-indent: -10000px;
     width: 108px;
 }
+
+.sortableList {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	float: left;
+	margin-right: 10px;
+	background: #eee;
+	padding: 5px;
+	width: 143px;
+}

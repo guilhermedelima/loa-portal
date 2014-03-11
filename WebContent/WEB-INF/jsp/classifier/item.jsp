@@ -32,7 +32,16 @@
 					 "sInfo": "Mostrando _START_ - _END_ , total de _TOTAL_ resultados"
 				 }
 			} );
-		} );
+		});
+
+		$(function(){
+			$("[id^=button]").click(function(){
+				var year = $(this).text();
+				$('input[name="year"]').val(year);
+
+				$("form").submit();								
+			});
+		});				
 	</script>
 	
 </head>
@@ -59,30 +68,37 @@
 	<div class="row">
 
 		<!-- Sidebar -->
-		<aside class="large-2 columns">
-			<h5>Classificações Orçamentárias</h5>
-			<br />
-			<ul class="side-nav">
-				<c:forEach items="${enumList}" var="classifierEnum">
-					<li class="menu-lateral-classificadores">
-						<a href="<c:url value="/classificador/${classifierEnum.id}/2013" />" >${classifierEnum.name}</a>
-					</li>
-					<li class="divider"></li>
-				</c:forEach>
-				<li class="divider"></li>
-				<li>
-					<a href="<c:url value="/classificadores" />" >Consulta Personalizada</a>
-				</li>
-			</ul>
-		</aside>
+<!-- 		<aside class="large-2 columns"> -->
+<!-- 			<h5>Classificações Orçamentárias</h5> -->
+<!-- 			<br /> -->
+<!-- 			<ul class="side-nav"> -->
+<%-- 				<c:forEach items="${enumList}" var="classifierEnum"> --%>
+<!-- 					<li class="menu-lateral-classificadores"> -->
+<%-- 						<a href="<c:url value="/classificador/${classifierEnum.id}/2013" />" >${classifierEnum.name}</a> --%>
+<!-- 					</li> -->
+<!-- 					<li class="divider"></li> -->
+<%-- 				</c:forEach> --%>
+<!-- 				<li class="divider"></li> -->
+<!-- 				<li> -->
+<%-- 					<a href="<c:url value="/classificadores" />" >Consulta Personalizada</a> --%>
+<!-- 				</li> -->
+<!-- 			</ul> -->
+<!-- 		</aside> -->
 		<!-- End Sidebar -->
 
 		<!-- Main Blog Content -->
-		<div class="large-10 columns" role="content">
+		<div class="large-12 columns" role="content">
 			<article>
-			<h2><strong>${selectedEnum.name}</strong></h2>
+			<h2><strong>Consulta Personalizada</strong></h2>
 			
 			<hr/>
+			
+			<form id="form" action="<c:url value="/classificadores/busca"/>" method="post">
+				<input type="hidden" name="year" value="">
+				<c:forEach items="${selectedEnumList}" var="classifier">
+					<input type="hidden" name="idList[]" value="${classifier.id}">
+				</c:forEach>
+			</form>
 			
 			<h6 class="subheader"><em><strong>Selecione um exercício</strong></em></h6>
 			<dl class="sub-nav">
@@ -95,15 +111,17 @@
 							<dd>
 						</c:otherwise>
 					</c:choose>
-								<a href="<c:url value="/classificador/${selectedEnum.id}/${year}"/>" >${year}</a>
+								<a id="button${year}">${year}</a>
 							</dd>
 				</c:forEach>
 			</dl>
 			<table id="table_id">
 				<thead>
 					<tr>
-  						<th><small>Código</small></th>
-						<th><small>Título</small></th>
+						<c:forEach items="${selectedEnumList}" var="classifier">
+							<th><small>Código</small></th>
+							<th><small>${classifier.name}</small></th>
+						</c:forEach>
  						<th><small>Valor Projeto Lei</small></th>
   						<th><small>Valor Dotação Inicial</small></th>
  						<th><small>Lei Mais Crédito</small></th>
