@@ -28,7 +28,7 @@ public class ItemDAOTest {
 		items = dao.searchByType(ClassifierType.ACAO, 2000);
 
 		Assert.assertTrue(items.size() > 1);
-		Assert.assertTrue(items.get(0).getClassifierList().size() > 1);
+		Assert.assertTrue(items.get(0).getClassifierList().size() == 1);
 	}
 	
 	@Test
@@ -38,7 +38,8 @@ public class ItemDAOTest {
 		
 		items = dao.searchByType(ClassifierType.PO, 2000);
 
-		Assert.assertTrue(items.isEmpty());
+		Assert.assertTrue(items.size() == 1);
+		Assert.assertTrue(items.get(0).getClassifierList().size() == 1);
 	}
 	
 	@Test

@@ -30,7 +30,7 @@ public class ClassifierController {
 	private static final String CLASSIFIER_DEFAULT = ClassifierType.PROGRAMA.getId();
 	private static final int YEAR_DEFAULT = 2013;
 	
-	private static final String ERROR_MESSAGE_OFFLINE = "Serviço indisponível, tente mais tarde";
+	private static final String ERROR_MESSAGE_OFFLINE = "Serviço indisponível, tente novamente mais tarde";
 	
 	public ClassifierController(Result result, Validator validator){
 		this.result = result;
