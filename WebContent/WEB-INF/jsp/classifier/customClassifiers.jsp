@@ -81,11 +81,12 @@
 					</li>
 					<li class="divider"></li>
 				</c:forEach>
-				<li class="divider"></li>
-				<li>
-					<a href="<c:url value="/classificadores" />" >Consulta Personalizada</a>
-				</li>
-				</ul>
+			</ul>
+			<div class="panel">
+				<h5><a href="<c:url value="/classificadores" />" >Consulta Personalizada</a><h5>
+				<p>Clique no Link acima para montar uma consulta personalizada
+					selecionando os classificadores orçamentários desejados.</p>
+			</div>
 		</aside>
 		<!-- End Sidebar -->
 
@@ -101,7 +102,7 @@
 			<div class="large-3 large-offset-1 columns">
 				<div class="row">
 					<div class="large-8 large-centered columns panel callout radius">
-						<h6>Classificadores Disponíveis</h6>
+						<h6 align="center">Classificadores Disponíveis</h6>
 					</div>	
 				</div>
 				<div class="row">
@@ -120,7 +121,7 @@
 			<div class="large-3 columns">
 				<div class="row">
 					<div class="large-8 large-centered columns panel callout radius">
-						<h6>Classificadores Selecionados</h6>
+						<h6 align="center">Classificadores Selecionados</h6>
 					</div>	
 				</div>
 				<div class="row">

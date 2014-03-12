@@ -32,6 +32,8 @@
 					 "sInfo": "Mostrando _START_ - _END_ , total de _TOTAL_ resultados"
 				 }
 			} );
+		    
+			$('#table_id').show();
 		});
 
 		$(function(){
@@ -66,31 +68,11 @@
  	
 	<!-- Main Page Content and Sidebar -->
 	<div class="row">
-
-		<!-- Sidebar -->
-<!-- 		<aside class="large-2 columns"> -->
-<!-- 			<h5>Classificações Orçamentárias</h5> -->
-<!-- 			<br /> -->
-<!-- 			<ul class="side-nav"> -->
-<%-- 				<c:forEach items="${enumList}" var="classifierEnum"> --%>
-<!-- 					<li class="menu-lateral-classificadores"> -->
-<%-- 						<a href="<c:url value="/classificador/${classifierEnum.id}/2013" />" >${classifierEnum.name}</a> --%>
-<!-- 					</li> -->
-<!-- 					<li class="divider"></li> -->
-<%-- 				</c:forEach> --%>
-<!-- 				<li class="divider"></li> -->
-<!-- 				<li> -->
-<%-- 					<a href="<c:url value="/classificadores" />" >Consulta Personalizada</a> --%>
-<!-- 				</li> -->
-<!-- 			</ul> -->
-<!-- 		</aside> -->
-		<!-- End Sidebar -->
-
+	
 		<!-- Main Blog Content -->
 		<div class="large-12 columns" role="content">
 			<article>
 			<h2><strong>Consulta Personalizada</strong></h2>
-			
 			<hr/>
 			
 			<form id="form" action="<c:url value="/classificadores/busca"/>" method="post">
@@ -99,6 +81,13 @@
 					<input type="hidden" name="idList[]" value="${classifier.id}">
 				</c:forEach>
 			</form>
+			
+			<h6 class="subheader"><em><strong>Classificadores selecionados</strong></em></h6>
+			<ul class="inline-list">
+				<c:forEach items="${selectedEnumList}" var="selectedClassifier">
+					<li><a href="<c:url value="/classificador/${selectedClassifier.id}/2013" />" >${selectedClassifier.name}</a></li>
+				</c:forEach>
+			</ul>
 			
 			<h6 class="subheader"><em><strong>Selecione um exercício</strong></em></h6>
 			<dl class="sub-nav">
@@ -115,11 +104,11 @@
 							</dd>
 				</c:forEach>
 			</dl>
-			<table id="table_id">
+			<table id="table_id" style="display: none;">
 				<thead>
 					<tr>
 						<c:forEach items="${selectedEnumList}" var="classifier">
-							<th><small>Código</small></th>
+							<th><small>Código ${classifier.name}</small></th>
 							<th><small>${classifier.name}</small></th>
 						</c:forEach>
  						<th><small>Valor Projeto Lei</small></th>
@@ -159,8 +148,10 @@
 					</c:forEach>
 				</tbody>
 			</table>
-		</article>
 			
+			<a class="button" onclick="history.go(-1); return false;">Voltar</a>
+			
+			</article>
 		</div>
 		<!-- End Main Content -->
 	</div>

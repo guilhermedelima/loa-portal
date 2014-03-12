@@ -21,6 +21,7 @@
 		
 	<script type="text/javascript"> 
 		$(document).ready( function () {
+			
 		    $('#table_id').dataTable( {
 				 "oLanguage": {
 					 "sSearch": "Buscar por",
@@ -32,6 +33,8 @@
 					 "sInfo": "Mostrando _START_ - _END_ , total de _TOTAL_ resultados"
 				 }
 			} );
+
+		    $("#table_id").show();
 		} );
 	</script>
 	
@@ -69,11 +72,12 @@
 					</li>
 					<li class="divider"></li>
 				</c:forEach>
-				<li class="divider"></li>
-				<li>
-					<a href="<c:url value="/classificadores" />" >Consulta Personalizada</a>
-				</li>
 			</ul>
+			<div class="panel">
+				<h5><a href="<c:url value="/classificadores" />" >Consulta Personalizada</a><h5>
+				<p>Clique no Link acima para montar uma consulta personalizada
+					selecionando os classificadores orçamentários desejados.</p>
+			</div>
 		</aside>
 		<!-- End Sidebar -->
 
@@ -99,7 +103,7 @@
 							</dd>
 				</c:forEach>
 			</dl>
-			<table id="table_id">
+			<table id="table_id" style="display: none;">
 				<thead>
 					<tr>
   						<th><small>Código</small></th>

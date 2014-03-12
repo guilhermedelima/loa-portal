@@ -36,30 +36,8 @@
 		<!-- Main Page Content and Sidebar -->
 		<div class="row">
 
-			<!-- Sidebar -->
-			<aside class="large-2 columns">
-			<ul class="side-nav">
-				<c:forEach items="${enumList}" var="classifierEnum">
-					<li class="menu-lateral-classificadores">
-						<a href="<c:url value="/classificadores/${classifierEnum.id}/2013" />" >${classifierEnum.name}</a>
-					</li>
-					<li class="divider"></li>
-				</c:forEach>
-			</ul>
-			<div class="panel">
-				<h5>Orçamento Federal</h5>
-				<p>O orçamento da União pode ser representado como uma lista de
-					itens de despesa. A cada item desta lista estão associados valores
-					financeiros que correspondem aos diversos estágios da execução
-					orçamentária.</p>
-				<a href="http://www.orcamentofederal.gov.br/informacoes-orcamentarias/manual-tecnico/MTO_2014.pdf">Leia Mais →</a>
-			</div>
-			</aside>
-			<!-- End Sidebar -->
-
-
 			<!-- Main Blog Content -->
-			<div class="large-10 columns" role="content">
+			<div class="large-12 columns" role="content">
 				<article>
 				
 					<c:choose>
@@ -80,6 +58,7 @@
 						</c:otherwise>
 					</c:choose>
 
+					</br></br>
 					<a href="#" class="button" onclick="history.go(-1); return false;">Voltar</a>
 				</article>
 				<hr />
