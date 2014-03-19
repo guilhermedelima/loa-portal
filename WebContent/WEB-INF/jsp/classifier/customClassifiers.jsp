@@ -36,7 +36,12 @@
 					alert("Escolha pelo menos um classificador");
 					return false;
 				}
-				
+
+				//Fix Firefox Back Button Error
+				for(var i=0; i<${enumSize}; i++){
+					$('input[name="idList[' +i+ ']"]').remove();
+				}
+					
 				for(var i=0; i<arrayClassifier.length; i++){
 					$('<input>').attr({
 						type: "hidden",
@@ -46,6 +51,7 @@
 				}	
 			});
 		});
+
 	</script>
 </head>
 
@@ -83,7 +89,7 @@
 				</c:forEach>
 			</ul>
 			<div class="panel">
-				<h5><a href="<c:url value="/classificadores" />" >Consulta Personalizada</a><h5>
+				<h5><a href="<c:url value="/classificadores" />" >Consulta Personalizada</a></h5>
 				<p>Clique no Link acima para montar uma consulta personalizada
 					selecionando os classificadores orçamentários desejados.</p>
 			</div>

@@ -56,6 +56,13 @@
 	</div>
 	</br></br>
 	
+	<div class="row">
+		<div class="large-12 columns">
+			<div class="nav-bar right">
+				<a class="button" href='<c:url value="/classificadores" />'>Faça sua própria consulta</a>
+			</div>
+		</div>
+	</div>
 	<!-- End Nav -->
  	
 	<!-- Main Page Content and Sidebar -->
@@ -74,7 +81,7 @@
 				</c:forEach>
 			</ul>
 			<div class="panel">
-				<h5><a href="<c:url value="/classificadores" />" >Consulta Personalizada</a><h5>
+				<h5><a href="<c:url value="/classificadores" />" >Consulta Personalizada</a></h5>
 				<p>Clique no Link acima para montar uma consulta personalizada
 					selecionando os classificadores orçamentários desejados.</p>
 			</div>
@@ -121,7 +128,7 @@
 						<tr>
 							<c:forEach items="${item.classifierList}" var="classifier">
 								<td align="center"><small>${classifier.code}</small></td>
-								<td align="left">${classifier.label}</td>
+								<td align="left"><small>${classifier.label}</small></td>
 							</c:forEach>
  							<td align="right"><small><fmt:formatNumber
  										value="${item.valueProjetoLei}" currencySymbol=""

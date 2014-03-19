@@ -1,6 +1,7 @@
 package br.unb.loa.util;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import br.unb.loa.model.ClassifierType;
@@ -21,6 +22,9 @@ public class ClassifierUtil {
 		enumList = new ArrayList<ClassifierType>();
 		
 		if(idList != null){
+			//Vraptor Bug
+			Collections.reverse(idList);
+			
 			for(String id : idList){
 				for(ClassifierType type : ClassifierType.values()) {
 					if (type.getId().equals(id))

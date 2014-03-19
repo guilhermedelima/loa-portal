@@ -12,16 +12,41 @@
 	<link rel="shortcut icon" href="<c:url value="/img/favicon.ico" />" type="image/x-icon"/>
 	<link rel="stylesheet" href="<c:url value="/css/foundation.css" />" />
 	<link rel="stylesheet" href="<c:url value="/DataTables/media/css/dataTables.foundation.css" />" />
+	<link rel="stylesheet" href="<c:url value="/DataTables/media/css/TableTools.css" />" />
 	<link rel="stylesheet" href="<c:url value="/css/default.css" />" />
 		
 	<script type="text/javascript" charset="utf-8" src="<c:url value="/DataTables/media/js/jquery.js" />"></script>
 	<script type="text/javascript" charset="utf-8" src="<c:url value="/DataTables/media/js/jquery.dataTables.js" />"></script>
 	<script type="text/javascript" charset="utf-8" src="<c:url value="/DataTables/media/js/dataTables.foundation.js" />"></script>
+	<script type="text/javascript" charset="utf-8" src="<c:url value="/DataTables/media/js/ZeroClipboard.js" />"></script>
+	<script type="text/javascript" charset="utf-8" src="<c:url value="/DataTables/media/js/TableTools.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/js/modernizr.js"/>" ></script>	
 		
 	<script type="text/javascript"> 
 		$(document).ready( function () {
 		    $('#table_id').dataTable( {
+		    	 "sDom": 'lfrtip<"clear row">T',
+				 "oTableTools": {
+				 	"sSwfPath": "<c:url value="/DataTables/media/swf/copy_csv_xls_pdf.swf" />",
+				 	"aButtons": [
+				 				{
+				 					"sExtends": "copy",
+				 					"sButtonText": "Copiar texto"
+				 				},
+				 				{
+				 					"sExtends": "csv",
+				 					"sButtonText": "CSV"
+				 				},
+				 				{
+				 					"sExtends": "pdf",
+				 					"sButtonText": "PDF"
+				 				},
+				 				{
+				 					"sExtends": "print",
+				 					"sButtonText": "Imprimir"
+				 				}
+				 			]
+				 },
 				 "oLanguage": {
 					 "sSearch": "Buscar por",
 					 "sLoadingRecords": "Carregando...",
@@ -124,7 +149,7 @@
 						<tr>
 							<c:forEach items="${item.classifierList}" var="classifier">
 								<td align="center"><small>${classifier.code}</small></td>
-								<td align="left">${classifier.label}</td>
+								<td align="left"><small>${classifier.label}</small></td>
 							</c:forEach>
  							<td align="right"><small><fmt:formatNumber
  										value="${item.valueProjetoLei}" currencySymbol=""
@@ -149,6 +174,7 @@
 				</tbody>
 			</table>
 			
+			</br>
 			<a class="button" onclick="history.go(-1); return false;">Voltar</a>
 			
 			</article>

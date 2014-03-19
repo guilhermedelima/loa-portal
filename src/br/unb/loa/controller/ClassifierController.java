@@ -76,10 +76,13 @@ public class ClassifierController {
 	
 	@Path("/classificadores")
 	public void customClassifiers(){
+		List<ClassifierType> enumList;
+		enumList = Arrays.asList(ClassifierType.values());
 		
 		result.include("selectedYear", YEAR_DEFAULT);
 		result.include("loaYears", loaYears);
-		result.include("enumList", Arrays.asList(ClassifierType.values()));
+		result.include("enumList", enumList);
+		result.include("enumSize", enumList.size());
 	}
 	
 	@Post
