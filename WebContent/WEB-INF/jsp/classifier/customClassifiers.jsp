@@ -69,8 +69,7 @@
 			</div>
 		</div>
 	</div>
-	</br></br>
-	
+	</br></br>]
 	<!-- End Nav -->
  	
 	<!-- Main Page Content and Sidebar -->
@@ -88,11 +87,6 @@
 					<li class="divider"></li>
 				</c:forEach>
 			</ul>
-			<div class="panel">
-				<h5><a href="<c:url value="/classificadores" />" >Consulta Personalizada</a></h5>
-				<p>Clique no Link acima para montar uma consulta personalizada
-					selecionando os classificadores orçamentários desejados.</p>
-			</div>
 		</aside>
 		<!-- End Sidebar -->
 
