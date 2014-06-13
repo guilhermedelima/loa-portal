@@ -6,7 +6,7 @@ import com.hp.hpl.jena.query.ResultSet;
 
 public class EndpointSPARQL {
 
-	private static final String ENDPOINT_URL = "http://localhost:8890/sparql";
+	private static final String ENDPOINT_URL = "http://orcamento.dados.gov.br/sparql/";
 	
 	public EndpointSPARQL(){ }
 	
