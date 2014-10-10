@@ -61,7 +61,7 @@ public class ItemDAO implements SimpleDAO<Item, ClassifierType>{
 		ClassifierType type;
 		String query, classifierCode;
 		
-        query = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>" +
+        query = "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"+
                 "PREFIX loa: <http://vocab.e.gov.br/2013/09/loa#>" +
                 "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>" +
                 "SELECT (sum(?val1) as ?"+PLOA_SPARQL+") (sum(?val2) as ?"+LOA_SPARQL+") (sum(?val3) as ?"+LEI_MAIS_CREDITO_SPARQL+") (sum(?val4) as ?"+EMPENHADO_SPARQL+") (sum(?val5) as ?"+LIQUIDADO_SPARQL+") (sum(?val6) as ?"+PAGO_SPARQL+") WHERE {" +
@@ -86,10 +86,10 @@ public class ItemDAO implements SimpleDAO<Item, ClassifierType>{
         	
             switch (type) {
 	            case ORGAO:
-	            	query = query.replace("Pago ?val6 .", "Pago ?val6 . ?i loa:"+ClassifierType.UO.getProperty()+" [loa:"+type.getProperty()+" [rdf:label ?"+type.getId()+" ; loa:codigo ?"+classifierCode+"]] .");      
+	            	query = query.replace("Pago ?val6 .", "Pago ?val6 . ?i loa:"+ClassifierType.UO.getProperty()+" [loa:"+type.getProperty()+" [rdfs:label ?"+type.getId()+" ; loa:codigo ?"+classifierCode+"]] .");      
 	            	break;
 	            default:
-	            	query = query.replace("Pago ?val6 .", "Pago ?val6 . ?i loa:"+type.getProperty()+" [rdf:label ?"+type.getId()+" ; loa:codigo ?"+classifierCode+"] .");         
+	            	query = query.replace("Pago ?val6 .", "Pago ?val6 . ?i loa:"+type.getProperty()+" [rdfs:label ?"+type.getId()+" ; loa:codigo ?"+classifierCode+"] .");         
 	            	break;
             }	
         }

@@ -109,7 +109,7 @@
 			<h6 class="subheader"><em><strong>Classificadores selecionados</strong></em></h6>
 			<ul class="inline-list">
 				<c:forEach items="${selectedEnumList}" var="selectedClassifier">
-					<li><a href="<c:url value="/classificador/${selectedClassifier.id}/2013" />" >${selectedClassifier.name}</a></li>
+					<li><a href="<c:url value="/classificador/${selectedClassifier.id}/${defaultYear}" />" >${selectedClassifier.name}</a></li>
 				</c:forEach>
 			</ul>
 			

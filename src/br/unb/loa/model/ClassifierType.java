@@ -8,7 +8,7 @@ public enum ClassifierType {
 	SUBFUNCAO("Subfunção", "temSubfuncao", "subfuncao"),
 	PROGRAMA("Programa", "temPrograma", "programa"),
 	ACAO("Ação", "temAcao", "acao"),
-	LOCALIZADOR("Localizador", "temLocalizador", "localizador"),
+	SUBTITULO("Subtítulo", "temSubtitulo", "subtitulo"),
 	PO("Plano Orçamentário", "temPlanoOrcamentario", "po"),
 	CE("Categoria Econômica", "temCategoriaEconomica", "catEconomica"),
 	GND("Grupo de Natureza da Despesa", "temGND", "gnd"),

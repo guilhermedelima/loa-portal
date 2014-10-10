@@ -25,10 +25,10 @@ public class ClassifierController {
 	private List<Integer> loaYears; 
 	
 	private static final int LOA_START = 2000;
-	private static final int LOA_END = 2013;
+	private static final int LOA_END = 2014;
 	
 	private static final String CLASSIFIER_DEFAULT = ClassifierType.PROGRAMA.getId();
-	private static final int YEAR_DEFAULT = 2013;
+	private static final int YEAR_DEFAULT = 2014;
 	
 	private static final String ERROR_MESSAGE_OFFLINE = "Serviço indisponível, tente novamente mais tarde";
 	
@@ -71,6 +71,7 @@ public class ClassifierController {
 		result.include("selectedEnum", enumType);
 		result.include("selectedYear", year);
 		result.include("loaYears", loaYears);
+		result.include("defaultYear", YEAR_DEFAULT);
 		result.include("enumList", Arrays.asList(ClassifierType.values()));
 	}
 	
@@ -81,6 +82,7 @@ public class ClassifierController {
 		
 		result.include("selectedYear", YEAR_DEFAULT);
 		result.include("loaYears", loaYears);
+		result.include("defaultYear", YEAR_DEFAULT);
 		result.include("enumList", enumList);
 		result.include("enumSize", enumList.size());
 	}
@@ -109,6 +111,7 @@ public class ClassifierController {
 		result.include("itemList", itemList);
 		result.include("selectedYear", year);
 		result.include("loaYears", loaYears);
+		result.include("defaultYear", YEAR_DEFAULT);
 		result.include("enumList", Arrays.asList(ClassifierType.values()));
 	}
 
