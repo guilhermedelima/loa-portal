@@ -25,10 +25,10 @@ public class ClassifierController {
 	private List<Integer> loaYears; 
 	
 	private static final int LOA_START = 2000;
-	private static final int LOA_END = 2014;
+	private static final int LOA_END = 2015;
 	
 	private static final String CLASSIFIER_DEFAULT = ClassifierType.PROGRAMA.getId();
-	private static final int YEAR_DEFAULT = 2014;
+	private static final int YEAR_DEFAULT = 2015;
 	
 	private static final String ERROR_MESSAGE_OFFLINE = "Serviço indisponível, tente novamente mais tarde";
 	

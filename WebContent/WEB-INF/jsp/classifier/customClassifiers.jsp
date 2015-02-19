@@ -57,19 +57,19 @@
 
 <body>
 	<!-- Nav Bar -->
-    <div id="header" style="background-color:#00500F">
-		<div id="barra-brasil">
-			<div class="barra">
-				<ul>
-					<li><a title="Acesso Ã  informação" class="ai"
-						href="http://www.acessoainformacao.gov.br">www.sic.gov.br</a></li>
-					<li><a title="Portal de Estado do Brasil" class="brasilgov"
-						href="http://www.brasil.gov.br">www.brasil.gov.br</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	</br></br>]
+<!--     <div id="header" style="background-color:#00500F"> -->
+<!-- 		<div id="barra-brasil"> -->
+<!-- 			<div class="barra"> -->
+<!-- 				<ul> -->
+<!-- 					<li><a title="Acesso Ã  informação" class="ai" -->
+<!-- 						href="http://www.acessoainformacao.gov.br">www.sic.gov.br</a></li> -->
+<!-- 					<li><a title="Portal de Estado do Brasil" class="brasilgov" -->
+<!-- 						href="http://www.brasil.gov.br">www.brasil.gov.br</a></li> -->
+<!-- 				</ul> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
+	</br></br>
 	<!-- End Nav -->
  	
 	<!-- Main Page Content and Sidebar -->

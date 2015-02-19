@@ -15,7 +15,7 @@ public enum ClassifierType {
 	MODALIDADE("Modalidade da Aplicação", "temModalidadeAplicacao", "modalidade"),
 	ELEMENTO("Elemento de Despesa", "temElementoDespesa", "elemento"),
 	FONTE("Fonte de Recursos", "temFonteRecursos", "fonte"),
-	IDUSO("Indicador de Uso", "temIndicadorUso", "idUso"),
+	IDUSO("Identificador de Uso", "temIdentificadorUso", "idUso"),
 	RP("Resultado Primário", "temResultadoPrimario", "rp")
 	;
 	
